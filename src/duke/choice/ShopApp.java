@@ -7,7 +7,7 @@ package duke.choice;
 
 /**
  *
- * @author andre TESTE
+ * @author andre
  */
 public class ShopApp {
 
