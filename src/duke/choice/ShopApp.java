@@ -88,7 +88,7 @@ public class ShopApp {
 //            if (c1.getSize().equals(item.getSize())) {
 //                total = total + item.getPrice();
 //                System.out.println("Item " + "," + item.getDescription() + ", " + item.getPrice() + ", " + item.getSize());
-            System.out.println("Items " + item.getDescription()+ ", " + item.getPrice() + ", " + item.getSize());
+            System.out.println("Items " + item.getDescription() + ", " + item.getPrice() + ", " + item.getSize());
 //                
 //                total = total + total * tax;
 //                
@@ -108,11 +108,11 @@ public class ShopApp {
         }
 
         try {
-            ////average = (count == 0) ? 0 : average/count; way to avoid the exception
+            //average = (count == 0) ? 0 : average/count; way to avoid the exception
             average = average / count;
             System.out.println("Average price " + average + ", Count " + count);
 
-        } catch (ArithmeticException e){
+        } catch (ArithmeticException e) {
             System.out.println("Don't divide by 0");
         }
 

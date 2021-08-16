@@ -7,7 +7,7 @@ package duke.choice;
 
 /**
  *
- * @author andre error
+ * @author andre
  */
 public class Customer {
 
