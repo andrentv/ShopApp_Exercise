@@ -7,15 +7,22 @@ package duke.choice;
 
 /**
  *
- * @author andre
+ * @author andre error
  */
 public class Clothing {
     private String description;
     private double price;
+    
     //String size = setSize(Default="M");
     private String size = "M";
-    private final double MIN_PRICE = 10;
-    private final double TAX_RATE = 0.2;
+    public final static double MIN_PRICE = 10;
+    public final static double TAX_RATE = 0.2;
+    
+     public Clothing(String description, double price, String aSize) {
+        this.description = description;
+        this.price = price;
+        size = aSize;
+    }
     
     
     public String getDescription() {
