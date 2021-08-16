@@ -5,6 +5,16 @@
  */
 package duke.choice;
 
+
+import io.helidon.webserver.Routing;
+import io.helidon.webserver.ServerConfiguration;
+import io.helidon.webserver.WebServer;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
+import java.util.Arrays;
+
 /**
  *
  * @author andre
@@ -37,15 +47,31 @@ public class ShopApp {
         Clothing item2 = new Clothing("Orange T-Shirt", 10.5, "S");
 
 //        My way
-//        Clothing item3 = new Clothing("Green Scarf", 5, "S");
-//        Clothing item4 = new Clothing("Blue T-Shirt", 10.5, "S");
+        Clothing item3 = new Clothing("Green Scarf", 5, "S");
+        Clothing item4 = new Clothing("Blue T-Shirt", 10.5, "S");
 //        My way
 //        Clothing item3 = new Clothing();
 //        Clothing item4 = new Clothing();
 //
-//        Clothing[] items = {item1, item2, item3, item4};
-        Clothing[] items = {item1, item2, new Clothing("Green Scarf", 5, "S"), new Clothing("Blue T-Shirt", 10.5, "S")};
-
+        Clothing[] items = {item1, item2, item3, item4};
+//        Clothing[] items = {item1, item2, new Clothing("Green Scarf", 5, "S"), new Clothing("Blue T-Shirt", 10.5, "S")};
+        
+        try{            
+            ItemList list = new  ItemList(items);
+            
+            Routing routing = Routing.builder().get("/items", list).build();
+            
+            ServerConfiguration config = ServerConfiguration.builder()
+                    .bindAddress(InetAddress.getLocalHost())
+                    .port(8888).build(); /*10.0.0.3:8888/items*/
+            WebServer ws = WebServer.create(config, routing);
+            
+            ws.start();
+            
+        } catch (UnknownHostException ex){
+            ex.printStackTrace();
+            
+        }
 //        item1.setDescription("Blue Jacket");
 //        item1.setPrice(20.9);
 //        item1.setSize("M");
@@ -81,14 +107,15 @@ public class ShopApp {
         int measurement = 8;
 
         c1.addItems(items);
-        ////c1.setSize(measurement);
+        //c1.setSize(measurement);
         System.out.println("Hi! my name is " + c1.getName() + ", " + c1.getSize() + ", " + c1.getTotalClothingCost() + ".");
 
         for (Clothing item : c1.getItems()) {
 //            if (c1.getSize().equals(item.getSize())) {
 //                total = total + item.getPrice();
 //                System.out.println("Item " + "," + item.getDescription() + ", " + item.getPrice() + ", " + item.getSize());
-            System.out.println("Items " + item.getDescription() + ", " + item.getPrice() + ", " + item.getSize());
+            //System.out.println("Items " + item.getDescription() + ", " + item.getPrice() + ", " + item.getSize());
+            System.out.println("Items output " + item);
 //                
 //                total = total + total * tax;
 //                
@@ -116,7 +143,12 @@ public class ShopApp {
             System.out.println("Don't divide by 0");
         }
 
-    }
+        Arrays.sort(c1.getItems());
+        for (Clothing item : c1.getItems()) {
+           System.out.println("Items output " + item);
+
+        }
 //
 //        System.out.println("Total = " + total);
+    }
 }
